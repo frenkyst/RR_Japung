@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_admin"
+    app:startDestination="@+id/navigation_home_admin">
+
+    <fragment
+        android:id="@+id/navigation_home_admin"
+        android:name="com.example.rr_japung.ui_admin.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/admin_ui_fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_transaksi_admin"
+        android:name="com.example.rr_japung.ui_admin.transaksi.TransaksiFragment"
+        android:label="@string/title_transaksi"
+        tools:layout="@layout/admin_ui_fragment_transaksi" />
+
+    <fragment
+        android:id="@+id/navigation_input_data_mobil_admin"
+        android:name="com.example.rr_japung.ui_admin.inputedit.InputDataMobilFragment"
+        android:label="@string/title_input_data_mobil"
+        tools:layout="@layout/admin_ui_fragment_input_data_mobil" />
+
+    <fragment
+        android:id="@+id/navigation_akun_admin"
+        android:name="com.example.rr_japung.ui_admin.akun.AkunFragment"
+        android:label="@string/title_akun"
+        tools:layout="@layout/admin_ui_fragment_akun" />
+
+</navigation>

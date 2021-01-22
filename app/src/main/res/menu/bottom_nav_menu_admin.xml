@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home_admin"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_transaksi_admin"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_transaksi" />
+
+    <item
+        android:id="@+id/navigation_input_data_mobil_admin"
+        android:icon="@drawable/ic_input_data_mobil"
+        android:title="@string/title_input_data_mobil" />
+
+    <item
+        android:id="@+id/navigation_akun_admin"
+        android:icon="@drawable/ic_akun"
+        android:title="@string/title_akun" />
+</menu>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui_admin.inputedit.InputDataMobilFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal"
+                android:layout_weight="100">
+                <Button
+                    android:id="@+id/button_tab_data_mobil"
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
+                    android:background="@drawable/button_template1"
+                    android:text="Data Mobil"
+                    android:layout_height="35dp"/>
+                <Button
+                    android:id="@+id/button_tab_data_sopir"
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
+                    android:background="@drawable/button_template1"
+                    android:text="Data Sopir"
+                    android:layout_height="35dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/aksi_tab_mobil"
+            layout="@layout/admin_ui_fragment_input_data_mobil_tab_mobil"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <include
+            android:id="@+id/aksi_tab_sopir"
+            android:visibility="gone"
+            layout="@layout/admin_ui_fragment_input_data_mobil_tab_sopir"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+
+
+
+</FrameLayout>

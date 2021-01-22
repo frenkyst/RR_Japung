@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_pelanggan"
+    app:startDestination="@+id/navigation_home_pelanggan">
+
+    <fragment
+        android:id="@+id/navigation_home_pelanggan"
+        android:name="com.example.rr_japung.ui_pelanggan.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/pelanggan_ui_fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_keranjang_pesanan_pelanggan"
+        android:name="com.example.rr_japung.ui_pelanggan.keranjang.KeranjangPesananFragment"
+        android:label="@string/title_keranjang_pesanan"
+        tools:layout="@layout/pelanggan_ui_fragment_keranjang_pesanan" />
+
+    <fragment
+        android:id="@+id/navigation_transaksi_pelanggan"
+        android:name="com.example.rr_japung.ui_pelanggan.transaksi.TransaksiFragment"
+        android:label="@string/title_transaksi"
+        tools:layout="@layout/pelanggan_ui_fragment_transaksi" />
+
+    <fragment
+        android:id="@+id/navigation_akun_pelanggan"
+        android:name="com.example.rr_japung.ui_pelanggan.akun.AkunFragment"
+        android:label="@string/title_akun"
+        tools:layout="@layout/pelanggan_ui_fragment_akun" />
+</navigation>

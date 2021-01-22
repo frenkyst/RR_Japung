@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RR_Japung</string>
+    <string name="title_home">Home</string>
+    <string name="title_transaksi">Transaksi</string>
+    <string name="title_keranjang_pesanan">Keranjang</string>
+    <string name="title_akun">Akun</string>
+    <string name="title_input_data_mobil">Input</string>
+    <string name="title_activity_admin">MainActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

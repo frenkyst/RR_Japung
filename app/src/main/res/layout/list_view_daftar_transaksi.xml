@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_biru_nom"
+        android:weightSum="900"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="600"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_nama_pemesan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Udin Manusia"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="19sp" />
+
+
+            <TextView
+                android:id="@+id/text_tipe_kendaraan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Avanza"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="24sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1000"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_merk_kendaraan"
+                    android:layout_width="0dp"
+                    android:layout_weight="500"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Tamia"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/text_no_kendaraan"
+                    android:layout_width="0dp"
+                    android:layout_weight="500"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="AB 1500 CC"
+                    android:textColor="@android:color/black"
+                    android:textAlignment="viewEnd"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1000"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_transmisi"
+                    android:layout_width="0dp"
+                    android:layout_weight="300"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Time"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/text_waktu_pinjam"
+                    android:layout_width="0dp"
+                    android:layout_weight="700"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="00-00-0000 00:00"
+                    android:textColor="@android:color/black"
+                    android:textAlignment="viewEnd"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/image_view_upload"
+            android:textAlignment="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_width="0dp"
+            android:layout_weight="297"
+            android:layout_height="100dp"
+            tools:srcCompat="@drawable/default_image1" />
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

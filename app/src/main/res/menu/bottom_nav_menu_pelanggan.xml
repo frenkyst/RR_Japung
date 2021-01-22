@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home_pelanggan"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_keranjang_pesanan_pelanggan"
+        android:icon="@drawable/ic_keranjang_pelanggan"
+        android:title="@string/title_keranjang_pesanan" />
+
+    <item
+        android:id="@+id/navigation_transaksi_pelanggan"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_transaksi" />
+
+    <item
+        android:id="@+id/navigation_akun_pelanggan"
+        android:icon="@drawable/ic_akun"
+        android:title="@string/title_akun" />
+
+</menu>
