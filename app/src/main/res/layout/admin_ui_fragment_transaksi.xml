@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui_admin.transaksi.TransaksiFragment"
-    android:id="@+id/fragment_transaksi_admin">
+    android:id="@+id/admin_ui_fragment_transaksi">
 
 
     <Button

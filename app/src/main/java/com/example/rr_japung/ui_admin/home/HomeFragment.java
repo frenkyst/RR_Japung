@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(HomeFragment.this);
         mStorage = FirebaseStorage.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("mobil");
         mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

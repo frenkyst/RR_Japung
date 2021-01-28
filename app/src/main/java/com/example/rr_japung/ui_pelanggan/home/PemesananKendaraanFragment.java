@@ -71,7 +71,8 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
 
     private int mYear, mMonth, mDay, mHour, mMinute;
     private int TotalHargaSewa = Integer.parseInt(PelangganActivity.harga_sewa),
-            PaketHargaSupir = 0;
+            PaketHargaSupir = 0,
+    JumlahPesanan = 1;
 
     private Date TanggalTransaksi = Calendar.getInstance().getTime();
     private Date TanggalPesan = TanggalTransaksi;
@@ -87,6 +88,10 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
     private Calendar TanggalKembali1 = Calendar.getInstance();
     private int hour;
     private int minute;
+
+    Date timestampTanggalTransaksi = null;
+    Date timestampTanggalPesan = null;
+    Date timestampTanggalKembali = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -113,7 +118,7 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
         TextViewTotalHargaSewa = root.findViewById(R.id.textview_total_harga_sewa);
         Picasso.get()
                 .load(PelangganActivity.imageURL)
-                .placeholder(R.drawable.default_image1)
+                .placeholder(R.drawable.mobildefault)
                 .into(mImageView);
         DecimalFormat decim = new DecimalFormat("#,###");
         TextViewHargaSewa.setText("Rp. "+decim.format(Integer.parseInt(PelangganActivity.harga_sewa))+",00");
@@ -219,19 +224,6 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
         ButtonPesanSekarang .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                formattedDateTanggalTransaksi = fulldate.format(TanggalTransaksi);
-                formattedDateTanggalPesan = fulldate.format(TanggalPesan);
-                formattedDateTanggalKembali = fulldate.format(TanggalKembali);
-                Date timestampTanggalTransaksi = null;
-                Date timestampTanggalPesan = null;
-                Date timestampTanggalKembali = null;
-                try {
-                    timestampTanggalTransaksi = (Date)fulldate.parse(formattedDateTanggalTransaksi);
-                    timestampTanggalPesan = (Date)fulldate.parse(formattedDateTanggalPesan);
-                    timestampTanggalKembali = (Date)fulldate.parse(formattedDateTanggalKembali);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
 
                 if (PaketHargaSupir==0){
                     Transaksi dataTransaksi = new Transaksi(PelangganActivity.merk_kendaraan.trim(),
@@ -250,8 +242,9 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
                             EditTextNoKTPPemesan.getText().toString().trim(),
                             EditTextNamaPemesan.getText().toString().trim(),
                             EditTextNoTeleponPemesan.getText().toString().trim(),
-                            EditTextAlamatPemesan.getText().toString().trim());
-                    mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("keranjang");
+                            EditTextAlamatPemesan.getText().toString().trim(),
+                            "TRANSFER","PENDING");
+                    mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("transaksi");
                     mDatabaseRefPesanSekarang.push().setValue(dataTransaksi);
                     Toast.makeText(getContext(), "Transaksi successful", Toast.LENGTH_LONG).show();
                 } else {
@@ -274,8 +267,9 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
                             EditTextNoKTPPemesan.getText().toString().trim(),
                             EditTextNamaPemesan.getText().toString().trim(),
                             EditTextNoTeleponPemesan.getText().toString().trim(),
-                            EditTextAlamatPemesan.getText().toString().trim());
-                    mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("keranjang");
+                            EditTextAlamatPemesan.getText().toString().trim(),
+                            "TRANSFER","PENDING");
+                    mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("transaksi");
                     mDatabaseRefPesanSekarang.push().setValue(dataTransaksi);
                     Toast.makeText(getContext(), "Transaksi successful", Toast.LENGTH_LONG).show();
                 }
@@ -286,6 +280,9 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
         TanggalPesan1.setTime(TanggalPesan);
         hour = TanggalPesan1.get(Calendar.HOUR_OF_DAY);
         minute = TanggalPesan1.get(Calendar.MINUTE);
+        TextView StatusPembayaran;
+        StatusPembayaran = root.findViewById(R.id.textview_status_pembayaran);
+        StatusPembayaran.setVisibility(View.GONE);
 
         return root;
     }
@@ -298,7 +295,8 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
         TextViewPaketNamaSupir.setText(selectedItem.getNamaSopir());
         TextViewPaketNoTeleponSupir.setText(selectedItem.getNoTeleponSopir());
         TextViewPaketHargaSupir.setText("Rp."+decim.format(PaketHargaSupir)+",00");
-        TotalHargaSewa = Integer.valueOf(PelangganActivity.harga_sewa)+150000;
+        TotalHargaSewa=Integer.valueOf(PelangganActivity.harga_sewa);
+        TotalHargaSewa = (TotalHargaSewa+PaketHargaSupir)*JumlahPesanan;
         TextViewTotalHargaSewa.setText("Rp. "+decim.format(TotalHargaSewa)+",00");
         LineraLayoutListPaketSopir.setVisibility(View.GONE);
         LinearLayoutPaketSopir.setVisibility(View.VISIBLE);
@@ -326,9 +324,29 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
                         TextViewTanggalPesan.setText(formattedDate);
                         TanggalPesan1=combinedCal;
                         TanggalPesan = combinedCal.getTime();
+                        setTextTotalHarga();
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
+    }
+    public  void setTextTotalHarga(){
+        formattedDateTanggalTransaksi = fulldate.format(TanggalTransaksi);
+        formattedDateTanggalPesan = fulldate.format(TanggalPesan);
+        formattedDateTanggalKembali = fulldate.format(TanggalKembali);
+        try {
+            timestampTanggalTransaksi = (Date)fulldate.parse(formattedDateTanggalTransaksi);
+            timestampTanggalPesan = (Date)fulldate.parse(formattedDateTanggalPesan);
+            timestampTanggalKembali = (Date)fulldate.parse(formattedDateTanggalKembali);
+            Long JumlahPenguranganPesanan;
+            JumlahPenguranganPesanan = (timestampTanggalKembali.getTime()-timestampTanggalPesan.getTime())/86400000;
+            JumlahPesanan = Integer.valueOf(String.valueOf(JumlahPenguranganPesanan));
+            TotalHargaSewa=Integer.valueOf(PelangganActivity.harga_sewa);
+            TotalHargaSewa=(TotalHargaSewa+PaketHargaSupir)*JumlahPesanan;
+            DecimalFormat decim = new DecimalFormat("#,###");
+            TextViewTotalHargaSewa.setText("Rp. "+decim.format(TotalHargaSewa)+",00");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
     private void date2(){
         TanggalKembali1.setTime(TanggalKembali);
@@ -352,6 +370,7 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
                         TextViewTanggalKembali.setText(formattedDate);
                         TanggalKembali1=combinedCal;
                         TanggalKembali = combinedCal.getTime();
+                        setTextTotalHarga();
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
@@ -380,5 +399,6 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
+
     }
 }

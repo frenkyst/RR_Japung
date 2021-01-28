@@ -50,15 +50,21 @@ public class KeranjangPesananFragment extends Fragment implements KeranjangPesan
         mAdapter = new KeranjangPesanan(getContext(), mTransaksi);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(com.example.rr_japung.ui_pelanggan.keranjang.KeranjangPesananFragment.this);
-        mDatabaseRefTransaksi = FirebaseDatabase.getInstance().getReference("keranjang");
+        mDatabaseRefTransaksi = FirebaseDatabase.getInstance().getReference("transaksi");
         mDBListenerTransaksi = mDatabaseRefTransaksi.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mTransaksi.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Transaksi transaksi = postSnapshot.getValue(Transaksi.class);
-                    transaksi.setKey(postSnapshot.getKey());
-                    mTransaksi.add(transaksi);
+                    if(postSnapshot.child("statusPembayaran").exists()){
+                        String query = postSnapshot.child("statusPembayaran").getValue(String.class);
+                        if(query.equals("PENDING")){
+                            Transaksi transaksi = postSnapshot.getValue(Transaksi.class);
+                            transaksi.setKey(postSnapshot.getKey());
+                            mTransaksi.add(transaksi);
+                        }
+                    }
+
                     TanggalPesan.add( Long.parseLong(postSnapshot.child("tanggalPesan").getValue(String.class)));
                     TanggalKembali.add( Long.parseLong(postSnapshot.child("tanggalKembali").getValue(String.class)));
 //                    TanggalKembali2.add(dataSnapshot.child("tanggalKembali").getValue(String.class));
@@ -103,6 +109,8 @@ public class KeranjangPesananFragment extends Fragment implements KeranjangPesan
         PelangganActivity.nama_pemesan = selectedItem.getNamaPemesan();
         PelangganActivity.no_telepon_pemesan = selectedItem.getNoTeleponPemesan();
         PelangganActivity.alamat_pemesan = selectedItem.getAlamatPemesan();
+        PelangganActivity.id_pembayaran = selectedItem.getIdPembayaran();
+        PelangganActivity.status_pembayaran = selectedItem.getStatusPembayaran();
 
         AppCompatActivity activity = (AppCompatActivity) getContext();
         Fragment myFragment = new DetailPemesananKendaraanFragment();

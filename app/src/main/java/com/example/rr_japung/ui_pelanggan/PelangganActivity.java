@@ -33,7 +33,9 @@ public class PelangganActivity extends AppCompatActivity {
     nama_pemesan=null,
     no_KTP_pemesan=null,
     no_telepon_pemesan=null,
-    alamat_pemesan=null;
+    alamat_pemesan=null,
+    id_pembayaran=null,
+    status_pembayaran=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

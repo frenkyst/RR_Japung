@@ -15,15 +15,28 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class AdminActivity extends AppCompatActivity {
 
     public static String reference_key_no_kendaraan=null,
-                            merk_kendaraan=null,
-                            tipe_kendaraan=null,
-                            tahun_produksi=null,
-                            ukuran_mesin=null,
-                            status_kendaraan=null,
-                            harga_sewa=null,
-                            transmisi=null,
-                            mesin=null,
-                            imageURL=null;
+            merk_kendaraan=null,
+            tipe_kendaraan=null,
+            no_kendaraan=null,
+            tahun_produksi=null,
+            ukuran_mesin=null,
+            status_kendaraan=null,
+            harga_sewa=null,
+            transmisi=null,
+            mesin=null,
+            imageURL=null,
+            total_harga_sewa=null,
+            tanggal_pesan=null,
+            tanggal_kembali=null,
+            nama_sopir=null,
+            no_telepon_sopir=null,
+            harga_paket_sopir=null,
+            nama_pemesan=null,
+            no_KTP_pemesan=null,
+            no_telepon_pemesan=null,
+            alamat_pemesan=null,
+            id_pembayaran=null,
+            status_pembayaran=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

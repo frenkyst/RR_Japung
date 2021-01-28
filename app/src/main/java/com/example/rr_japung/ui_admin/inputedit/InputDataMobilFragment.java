@@ -86,7 +86,7 @@ public class InputDataMobilFragment extends Fragment {
         mImageView = root.findViewById(R.id.image_view);
         mProgressBar = root.findViewById(R.id.progress_bar);
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("mobil");
         mDatabaseRefSopir = FirebaseDatabase.getInstance().getReference("sopir");
         mButtonDataSopir.setOnClickListener(new View.OnClickListener() {
             @Override

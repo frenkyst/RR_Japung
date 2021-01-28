@@ -43,7 +43,7 @@ public class KeranjangPesanan extends RecyclerView.Adapter<KeranjangPesanan.Daft
         holder.textViewTanggalWaktuPesan .setText(date);
         Picasso.get()
                 .load(dataTransaksiCurrent.getFotoKendaraanURL())
-                .placeholder(R.drawable.default_image1)
+                .placeholder(R.drawable.mobildefault)
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);

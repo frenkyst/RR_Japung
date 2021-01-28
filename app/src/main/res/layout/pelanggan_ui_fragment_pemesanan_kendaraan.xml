@@ -29,7 +29,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="5dp"
-                app:srcCompat="@drawable/default_image1" />
+                app:srcCompat="@drawable/mobildefault" />
 
             <TextView
                 android:id="@+id/textview_harga_sewa"
@@ -588,6 +588,15 @@
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/textview_status_pembayaran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="PENDING"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
@@ -614,5 +623,10 @@
 
         </LinearLayout>
     </ScrollView>
-
+    <WebView
+        android:id="@+id/webview"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 </FrameLayout>

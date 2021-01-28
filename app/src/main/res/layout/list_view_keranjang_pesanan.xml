@@ -112,7 +112,7 @@
             android:layout_width="0dp"
             android:layout_weight="297"
             android:layout_height="100dp"
-            tools:srcCompat="@drawable/default_image1" />
+            tools:srcCompat="@drawable/mobildefault" />
 
     </LinearLayout>
 

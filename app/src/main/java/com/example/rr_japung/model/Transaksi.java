@@ -7,12 +7,12 @@ public class Transaksi {
     private String MerkKendaraan;
     private String TipeKendaraan;
     private String NoKendaraan;
-    private String TahunProduksiKendaraan;//
-    private String UkuranMesinKendaraan;//
+    private String TahunProduksiKendaraan;
+    private String UkuranMesinKendaraan;
     private String StatusKendaraan;///
     private String HargaSewaKendaraan;
-    private String TransmisiKendaraan;//
-    private String MesinKendaraan;//
+    private String TransmisiKendaraan;
+    private String MesinKendaraan;
     private String FotoKendaraanURL;
     private String TotalHargaSewa;
     private String TanggalPesan;
@@ -27,6 +27,8 @@ public class Transaksi {
     private String NamaPemesan;
     private String NoTeleponPemesan;
     private String AlamatPemesan;
+    private String IdPembayaran;
+    private String StatusPembayaran;
 
     private String Key;///
 
@@ -34,26 +36,7 @@ public class Transaksi {
         //PENTING AJA DI HAPUS .........
     }
 
-//    public Transaksi(String merkKendaraan, String tipeKendaraan, String noKendaraan, String fotoKendaraanURL, String hargaSewaKendaraan, String totalHargaSewa, String tanggalPesan, String tanggalKembali, String tanggalTransaksi, String namaSopir, String noTeleponSopir, String hargaPaketSopir, String noKTPPemesan, String namaPemesan, String noTeleponPemesan, String alamatPemesan) {
-//        MerkKendaraan = merkKendaraan;
-//        TipeKendaraan = tipeKendaraan;
-//        NoKendaraan = noKendaraan;
-//        FotoKendaraanURL = fotoKendaraanURL;
-//        HargaSewaKendaraan = hargaSewaKendaraan;
-//        TotalHargaSewa = totalHargaSewa;
-//        TanggalPesan = tanggalPesan;
-//        TanggalKembali = tanggalKembali;
-//        TanggalTransaksi = tanggalTransaksi;
-//        NamaSopir = namaSopir;
-//        NoTeleponSopir = noTeleponSopir;
-//        HargaPaketSopir = hargaPaketSopir;
-//        NoKTPPemesan = noKTPPemesan;
-//        NamaPemesan = namaPemesan;
-//        NoTeleponPemesan = noTeleponPemesan;
-//        AlamatPemesan = alamatPemesan;
-//    }
-
-    public Transaksi(String merkKendaraan, String tipeKendaraan, String noKendaraan, String tahunProduksiKendaraan, String ukuranMesinKendaraan, String hargaSewaKendaraan, String transmisiKendaraan, String mesinKendaraan, String fotoKendaraanURL, String totalHargaSewa, String tanggalPesan, String tanggalKembali, String tanggalTransaksi, String namaSopir, String noTeleponSopir, String hargaPaketSopir, String noKTPPemesan, String namaPemesan, String noTeleponPemesan, String alamatPemesan) {
+    public Transaksi(String merkKendaraan, String tipeKendaraan, String noKendaraan, String tahunProduksiKendaraan, String ukuranMesinKendaraan, String hargaSewaKendaraan, String transmisiKendaraan, String mesinKendaraan, String fotoKendaraanURL, String totalHargaSewa, String tanggalPesan, String tanggalKembali, String tanggalTransaksi, String namaSopir, String noTeleponSopir, String hargaPaketSopir, String noKTPPemesan, String namaPemesan, String noTeleponPemesan, String alamatPemesan, String idPembayaran, String statusPembayaran) {
         MerkKendaraan = merkKendaraan;
         TipeKendaraan = tipeKendaraan;
         NoKendaraan = noKendaraan;
@@ -74,14 +57,20 @@ public class Transaksi {
         NamaPemesan = namaPemesan;
         NoTeleponPemesan = noTeleponPemesan;
         AlamatPemesan = alamatPemesan;
+        IdPembayaran = idPembayaran;
+        StatusPembayaran = statusPembayaran;
     }
 
-//    public Transaksi(String merkKendaraan, String tipeKendaraan, String noKendaraan, String fotoKendaraanURL, String hargaSewaKendaraan, String totalHargaSewa, String tanggalPesan, String tanggalKembali, String tanggalTransaksi, String noKTPPemesan, String namaPemesan, String noTeleponPemesan, String alamatPemesan) {
+    //    public Transaksi(String merkKendaraan, String tipeKendaraan, String noKendaraan, String tahunProduksiKendaraan, String ukuranMesinKendaraan, String hargaSewaKendaraan, String transmisiKendaraan, String mesinKendaraan, String fotoKendaraanURL, String totalHargaSewa, String tanggalPesan, String tanggalKembali, String tanggalTransaksi, String noKTPPemesan, String namaPemesan, String noTeleponPemesan, String alamatPemesan, String idPembayaran) {
 //        MerkKendaraan = merkKendaraan;
 //        TipeKendaraan = tipeKendaraan;
 //        NoKendaraan = noKendaraan;
-//        FotoKendaraanURL = fotoKendaraanURL;
+//        TahunProduksiKendaraan = tahunProduksiKendaraan;
+//        UkuranMesinKendaraan = ukuranMesinKendaraan;
 //        HargaSewaKendaraan = hargaSewaKendaraan;
+//        TransmisiKendaraan = transmisiKendaraan;
+//        MesinKendaraan = mesinKendaraan;
+//        FotoKendaraanURL = fotoKendaraanURL;
 //        TotalHargaSewa = totalHargaSewa;
 //        TanggalPesan = tanggalPesan;
 //        TanggalKembali = tanggalKembali;
@@ -90,10 +79,10 @@ public class Transaksi {
 //        NamaPemesan = namaPemesan;
 //        NoTeleponPemesan = noTeleponPemesan;
 //        AlamatPemesan = alamatPemesan;
+//        IdPembayaran = idPembayaran;
 //    }
 
-
-    public Transaksi(String merkKendaraan, String tipeKendaraan, String noKendaraan, String tahunProduksiKendaraan, String ukuranMesinKendaraan, String hargaSewaKendaraan, String transmisiKendaraan, String mesinKendaraan, String fotoKendaraanURL, String totalHargaSewa, String tanggalPesan, String tanggalKembali, String tanggalTransaksi, String noKTPPemesan, String namaPemesan, String noTeleponPemesan, String alamatPemesan) {
+    public Transaksi(String merkKendaraan, String tipeKendaraan, String noKendaraan, String tahunProduksiKendaraan, String ukuranMesinKendaraan, String hargaSewaKendaraan, String transmisiKendaraan, String mesinKendaraan, String fotoKendaraanURL, String totalHargaSewa, String tanggalPesan, String tanggalKembali, String tanggalTransaksi, String noKTPPemesan, String namaPemesan, String noTeleponPemesan, String alamatPemesan, String idPembayaran, String statusPembayaran) {
         MerkKendaraan = merkKendaraan;
         TipeKendaraan = tipeKendaraan;
         NoKendaraan = noKendaraan;
@@ -111,6 +100,8 @@ public class Transaksi {
         NamaPemesan = namaPemesan;
         NoTeleponPemesan = noTeleponPemesan;
         AlamatPemesan = alamatPemesan;
+        IdPembayaran = idPembayaran;
+        StatusPembayaran = statusPembayaran;
     }
 
     public String getKeyKendaraan() {
@@ -303,6 +294,22 @@ public class Transaksi {
 
     public void setAlamatPemesan(String alamatPemesan) {
         AlamatPemesan = alamatPemesan;
+    }
+
+    public String getIdPembayaran() {
+        return IdPembayaran;
+    }
+
+    public void setIdPembayaran(String idPembayaran) {
+        IdPembayaran = idPembayaran;
+    }
+
+    public String getStatusPembayaran() {
+        return StatusPembayaran;
+    }
+
+    public void setStatusPembayaran(String statusPembayaran) {
+        StatusPembayaran = statusPembayaran;
     }
 
     @Exclude

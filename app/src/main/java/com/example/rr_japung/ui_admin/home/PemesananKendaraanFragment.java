@@ -107,7 +107,7 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
         TextViewTotalHargaSewa = root.findViewById(R.id.textview_total_harga_sewa);
         Picasso.get()
                 .load(AdminActivity.imageURL)
-                .placeholder(R.drawable.default_image1)
+                .placeholder(R.drawable.mobildefault)
                 .into(mImageView);
         DecimalFormat decim = new DecimalFormat("#,###");
         TextViewHargaSewa.setText("Rp. "+decim.format(Integer.parseInt(AdminActivity.harga_sewa))+",00");
@@ -230,7 +230,8 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
                             EditTextNoKTPPemesan.getText().toString().trim(),
                             EditTextNamaPemesan.getText().toString().trim(),
                             EditTextNoTeleponPemesan.getText().toString().trim(),
-                            EditTextAlamatPemesan.getText().toString().trim());
+                            EditTextAlamatPemesan.getText().toString().trim(),
+                            "TUNAI","SUKSES");
                     mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("transaksi");
                     mDatabaseRefPesanSekarang.push().setValue(dataTransaksi);
                     Toast.makeText(getContext(), "Transaksi successful", Toast.LENGTH_LONG).show();
@@ -254,7 +255,8 @@ public class PemesananKendaraanFragment extends Fragment implements DaftarSopirA
                             EditTextNoKTPPemesan.getText().toString().trim(),
                             EditTextNamaPemesan.getText().toString().trim(),
                             EditTextNoTeleponPemesan.getText().toString().trim(),
-                            EditTextAlamatPemesan.getText().toString().trim());
+                            EditTextAlamatPemesan.getText().toString().trim(),
+                            "TUNAI","SUKSES");
                     mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("transaksi");
                     mDatabaseRefPesanSekarang.push().setValue(dataTransaksi);
                     Toast.makeText(getContext(), "Transaksi successful", Toast.LENGTH_LONG).show();

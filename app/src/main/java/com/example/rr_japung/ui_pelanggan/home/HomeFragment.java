@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment implements DaftarMobil.OnItemClickLis
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(com.example.rr_japung.ui_pelanggan.home.HomeFragment.this);
         mStorage = FirebaseStorage.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("mobil");
         mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

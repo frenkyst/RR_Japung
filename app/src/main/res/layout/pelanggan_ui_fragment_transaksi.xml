@@ -5,16 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui_pelanggan.transaksi.TransaksiFragment"
-    android:id="@+id/fragment_transaksi_admin">
+    android:id="@+id/pelanggan_ui_fragment_transaksi">
 
 
-    <Button
-        android:id="@+id/jajal"
-        
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Button" />
+
+
 
     <ProgressBar
         android:id="@+id/progress_circle"
@@ -27,6 +22,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/jajal_tombol_iki"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Button" />
+        <TextView
+            android:id="@+id/tes_text_view"
+            android:paddingTop="20dp"
+            android:textSize="30dp"
+            android:text="jajal disek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <WebView
+        android:id="@+id/webview"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 </RelativeLayout>

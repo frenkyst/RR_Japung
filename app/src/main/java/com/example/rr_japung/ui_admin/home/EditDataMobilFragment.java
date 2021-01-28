@@ -74,7 +74,7 @@ public class EditDataMobilFragment extends Fragment {
         mImageView = root.findViewById(R.id.image_view);
         mProgressBar = root.findViewById(R.id.progress_bar);
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("mobil");
         mButtonPilihGambar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +113,7 @@ public class EditDataMobilFragment extends Fragment {
 
         Picasso.get()
                 .load(AdminActivity.imageURL)
-                .placeholder(R.drawable.default_image1)
+                .placeholder(R.drawable.mobildefault)
                 .fit()
                 .centerCrop()
                 .into(mImageView);

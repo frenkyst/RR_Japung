@@ -67,7 +67,7 @@ public class AkunFragment extends Fragment {
                 mProgressCircle.setVisibility(View.INVISIBLE);
                 Picasso.get()
                         .load(PhotoAkun)
-                        .placeholder(R.drawable.default_image1)
+                        .placeholder(R.drawable.mobildefault)
                         .into(mImageView);
             }
 

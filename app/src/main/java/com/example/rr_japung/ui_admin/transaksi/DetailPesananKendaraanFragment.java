@@ -1,4 +1,4 @@
-package com.example.rr_japung.ui_pelanggan.keranjang;
+package com.example.rr_japung.ui_admin.transaksi;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -32,7 +32,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.rr_japung.R;
 import com.example.rr_japung.adapter.DaftarSopirAdapter;
 import com.example.rr_japung.model.DataSopir;
-import com.example.rr_japung.ui_pelanggan.PelangganActivity;
+import com.example.rr_japung.ui_admin.AdminActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -58,7 +58,7 @@ import java.util.TimeZone;
 import java.util.concurrent.Delayed;
 
 
-public class DetailPemesananKendaraanFragment extends Fragment implements DaftarSopirAdapter.OnItemClickListener{
+public class DetailPesananKendaraanFragment extends Fragment implements DaftarSopirAdapter.OnItemClickListener{
 
     private TextView TextViewTanggalPesan,TextViewTanggalKembali,TextViewJamPesan;
     private ImageView mImageView;
@@ -84,20 +84,20 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
     private List<DataSopir> mDataSopir;
 
     private int mYear, mMonth, mDay, mHour, mMinute;
-    private int TotalHargaSewa = Integer.parseInt(PelangganActivity.harga_sewa),
+    private int TotalHargaSewa = Integer.parseInt(AdminActivity.harga_sewa),
             PaketHargaSupir = 0;
 
     private Date TanggalTransaksi = Calendar.getInstance().getTime();
     private SimpleDateFormat fulldate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
     private SimpleDateFormat tanggal = new SimpleDateFormat("dd-MM-yyyy");
     private SimpleDateFormat jam = new SimpleDateFormat("hh:mm:ss");
-//    String date = DateFormat.format("dd-MM-yyyy  hh:mm", Long.parseLong(PelangganActivity.tanggal_pesan)).toString();
+    //    String date = DateFormat.format("dd-MM-yyyy  hh:mm", Long.parseLong(AdminActivity.tanggal_pesan)).toString();
     private String formattedDateTanggalTransaksi = tanggal.format(TanggalTransaksi);
-    private String formattedDateTanggalPesan = DateFormat.format("dd-MM-yyyy", Long.parseLong(PelangganActivity.tanggal_pesan)).toString();
-    private String formattedDateTanggalKembali = DateFormat.format("dd-MM-yyyy", Long.parseLong(PelangganActivity.tanggal_kembali)).toString();
-    private String formattedTime = DateFormat.format("hh:mm", Long.parseLong(PelangganActivity.tanggal_pesan)).toString();
-    private Date TanggalPesan = new Date(Long.parseLong(PelangganActivity.tanggal_pesan));
-    private Date TanggalKembali = new Date(Long.parseLong(PelangganActivity.tanggal_kembali));
+    private String formattedDateTanggalPesan = DateFormat.format("dd-MM-yyyy", Long.parseLong(AdminActivity.tanggal_pesan)).toString();
+    private String formattedDateTanggalKembali = DateFormat.format("dd-MM-yyyy", Long.parseLong(AdminActivity.tanggal_kembali)).toString();
+    private String formattedTime = DateFormat.format("hh:mm", Long.parseLong(AdminActivity.tanggal_pesan)).toString();
+    private Date TanggalPesan = new Date(Long.parseLong(AdminActivity.tanggal_pesan));
+    private Date TanggalKembali = new Date(Long.parseLong(AdminActivity.tanggal_kembali));
     private Calendar TanggalPesan1 = Calendar.getInstance();
     private Calendar TanggalKembali1 = Calendar.getInstance();
     private int hour;
@@ -131,19 +131,19 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
         TextViewTotalHargaSewa = root.findViewById(R.id.textview_total_harga_sewa);
         TextViewStatusPembayaran = root.findViewById(R.id.textview_status_pembayaran);
         Picasso.get()
-                .load(PelangganActivity.imageURL)
+                .load(AdminActivity.imageURL)
                 .placeholder(R.drawable.mobildefault)
                 .into(mImageView);
         DecimalFormat decim = new DecimalFormat("#,###");
-        TextViewHargaSewa.setText("Rp. "+decim.format(Integer.parseInt(PelangganActivity.harga_sewa))+",00");
-        TextViewMerkTipeMobil.setText(PelangganActivity.merk_kendaraan+" "+PelangganActivity.tipe_kendaraan);
-        TextViewTipeMobil.setText(PelangganActivity.tipe_kendaraan);
-        TextViewTahunProduksi.setText(PelangganActivity.tahun_produksi+" TH");
-        TextViewTransmisi.setText(PelangganActivity.transmisi);
-        TextViewUkuranMesin.setText(PelangganActivity.ukuran_mesin+" CC");
-        TextViewMesinBS.setText(PelangganActivity.mesin);
-        TextViewNoKendaraan.setText(PelangganActivity.no_kendaraan);
-        TextViewTotalHargaSewa.setText("Rp. "+decim.format(Integer.parseInt(PelangganActivity.harga_sewa))+",00");
+        TextViewHargaSewa.setText("Rp. "+decim.format(Integer.parseInt(AdminActivity.harga_sewa))+",00");
+        TextViewMerkTipeMobil.setText(AdminActivity.merk_kendaraan+" "+AdminActivity.tipe_kendaraan);
+        TextViewTipeMobil.setText(AdminActivity.tipe_kendaraan);
+        TextViewTahunProduksi.setText(AdminActivity.tahun_produksi+" TH");
+        TextViewTransmisi.setText(AdminActivity.transmisi);
+        TextViewUkuranMesin.setText(AdminActivity.ukuran_mesin+" CC");
+        TextViewMesinBS.setText(AdminActivity.mesin);
+        TextViewNoKendaraan.setText(AdminActivity.no_kendaraan);
+        TextViewTotalHargaSewa.setText("Rp. "+decim.format(Integer.parseInt(AdminActivity.harga_sewa))+",00");
 
 //        TanggalKembali1.setTime(TanggalPesan);
 //        TanggalKembali1.add(Calendar.DATE, 1);
@@ -178,16 +178,16 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
         TextViewPaketHargaSupir = root.findViewById(R.id.textview_harga_paket_sopir);
         LinearLayoutPaketSopir = root.findViewById(R.id.linear_layout_paket_sopir);
         LineraLayoutListPaketSopir = root.findViewById(R.id.linear_layout_list_paket_sopir);
-        if(PelangganActivity.nama_sopir!=null){
+        if(AdminActivity.nama_sopir!=null){
             LinearLayoutPaketSopir.setVisibility(View.VISIBLE);
-            TextViewPaketNamaSupir.setText(PelangganActivity.nama_sopir);
-            TextViewPaketNoTeleponSupir.setText(PelangganActivity.no_telepon_sopir);
-            PaketHargaSupir=Integer.parseInt(PelangganActivity.harga_paket_sopir);
+            TextViewPaketNamaSupir.setText(AdminActivity.nama_sopir);
+            TextViewPaketNoTeleponSupir.setText(AdminActivity.no_telepon_sopir);
+            PaketHargaSupir=Integer.parseInt(AdminActivity.harga_paket_sopir);
             TextViewPaketHargaSupir.setText("Rp. "+decim.format(PaketHargaSupir)+",00");
             TotalHargaSewa = PaketHargaSupir+TotalHargaSewa;
             TextViewTotalHargaSewa.setText("Rp. "+decim.format(TotalHargaSewa)+",00");
         }
-//        Toast.makeText(getContext(), "nama sopir -> "+PelangganActivity.nama_sopir, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(), "nama sopir -> "+AdminActivity.nama_sopir, Toast.LENGTH_LONG).show();
 
         TextViewPaketSupir.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -201,7 +201,7 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
                 mDataSopir = new ArrayList<>();
                 mAdapterSopir = new DaftarSopirAdapter(getContext(), mDataSopir);
                 mRecyclerViewSopir.setAdapter(mAdapterSopir);
-                mAdapterSopir.setOnItemClickListener(com.example.rr_japung.ui_pelanggan.keranjang.DetailPemesananKendaraanFragment.this);
+                mAdapterSopir.setOnItemClickListener(com.example.rr_japung.ui_admin.transaksi.DetailPesananKendaraanFragment.this);
                 mDatabaseRefDataSopir = FirebaseDatabase.getInstance().getReference("sopir");
                 mDBListenerDataSopir = mDatabaseRefDataSopir.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -230,10 +230,10 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
         EditTextNoKTPPemesan = root.findViewById(R.id.edittext_no_ktp_pemesan);
         EditTextNoTeleponPemesan = root.findViewById(R.id.edittext_no_telpon_pemesan);
         EditTextAlamatPemesan = root.findViewById(R.id.edittext_alamat_pemesan);
-        EditTextNamaPemesan.setText(PelangganActivity.nama_pemesan);
-        EditTextNoKTPPemesan.setText(PelangganActivity.no_KTP_pemesan);
-        EditTextNoTeleponPemesan.setText(PelangganActivity.no_telepon_pemesan);
-        EditTextAlamatPemesan.setText(PelangganActivity.alamat_pemesan);
+        EditTextNamaPemesan.setText(AdminActivity.nama_pemesan);
+        EditTextNoKTPPemesan.setText(AdminActivity.no_KTP_pemesan);
+        EditTextNoTeleponPemesan.setText(AdminActivity.no_telepon_pemesan);
+        EditTextAlamatPemesan.setText(AdminActivity.alamat_pemesan);
 
         cekStatusPembayaran();
         ButtonPesanSekarang.setText("BAYAR");
@@ -244,67 +244,6 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
                 webView.setVisibility(View.VISIBLE);
                 ButtonBayar=true;
                 cekStatusPembayaran();
-//                formattedDateTanggalTransaksi = fulldate.format(TanggalTransaksi);
-//                formattedDateTanggalPesan = fulldate.format(TanggalPesan);
-//                formattedDateTanggalKembali = fulldate.format(TanggalKembali);
-//                Date timestampTanggalTransaksi = null;
-//                Date timestampTanggalPesan = null;
-//                Date timestampTanggalKembali = null;
-//                try {
-//                    timestampTanggalTransaksi = (Date)fulldate.parse(formattedDateTanggalTransaksi);
-//                    timestampTanggalPesan = (Date)fulldate.parse(formattedDateTanggalPesan);
-//                    timestampTanggalKembali = (Date)fulldate.parse(formattedDateTanggalKembali);
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                if (PaketHargaSupir==0){
-//                    Transaksi dataTransaksi = new Transaksi(PelangganActivity.merk_kendaraan.trim(),
-//                            PelangganActivity.tipe_kendaraan.trim(),
-//                            PelangganActivity.no_kendaraan.trim(),
-//                            PelangganActivity.tahun_produksi,
-//                            PelangganActivity.ukuran_mesin,
-//                            PelangganActivity.harga_sewa.trim(),
-//                            PelangganActivity.transmisi,
-//                            PelangganActivity.mesin,
-//                            PelangganActivity.imageURL,
-//                            String.valueOf(TotalHargaSewa).trim(),
-//                            String.valueOf(timestampTanggalPesan.getTime()).trim(),
-//                            String.valueOf(timestampTanggalKembali.getTime()).trim(),
-//                            String.valueOf(timestampTanggalTransaksi.getTime()).trim(),
-//                            EditTextNoKTPPemesan.getText().toString().trim(),
-//                            EditTextNamaPemesan.getText().toString().trim(),
-//                            EditTextNoTeleponPemesan.getText().toString().trim(),
-//                            EditTextAlamatPemesan.getText().toString().trim());
-//                    mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("keranjang/"+PelangganActivity.reference_key_no_kendaraan);
-//                    mDatabaseRefPesanSekarang.setValue(dataTransaksi);
-//                    Toast.makeText(getContext(), "Transaksi successful", Toast.LENGTH_LONG).show();
-//                } else {
-//                    Transaksi dataTransaksi = new Transaksi(PelangganActivity.merk_kendaraan.trim(),
-//                            PelangganActivity.tipe_kendaraan.trim(),
-//                            PelangganActivity.no_kendaraan.trim(),
-//                            PelangganActivity.tahun_produksi,
-//                            PelangganActivity.ukuran_mesin,
-//                            PelangganActivity.harga_sewa.trim(),
-//                            PelangganActivity.transmisi,
-//                            PelangganActivity.mesin,
-//                            PelangganActivity.imageURL,
-//                            String.valueOf(TotalHargaSewa).trim(),
-//                            String.valueOf(timestampTanggalPesan.getTime()).trim(),
-//                            String.valueOf(timestampTanggalKembali.getTime()).trim(),
-//                            String.valueOf(timestampTanggalTransaksi.getTime()).trim(),
-//                            TextViewPaketNamaSupir.getText().toString().trim(),
-//                            TextViewPaketNoTeleponSupir.getText().toString().trim(),
-//                            String.valueOf(PaketHargaSupir).trim(),
-//                            EditTextNoKTPPemesan.getText().toString().trim(),
-//                            EditTextNamaPemesan.getText().toString().trim(),
-//                            EditTextNoTeleponPemesan.getText().toString().trim(),
-//                            EditTextAlamatPemesan.getText().toString().trim());
-//                    mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("keranjang/"+PelangganActivity.reference_key_no_kendaraan);
-//                    mDatabaseRefPesanSekarang.setValue(dataTransaksi);
-//                    Toast.makeText(getContext(), "Transaksi successful", Toast.LENGTH_LONG).show();
-//                }
-
             }
         });
 
@@ -334,7 +273,7 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
                             webView.getSettings().setJavaScriptEnabled(true);
                             webView.getSettings().setDomStorageEnabled(true);
                             webView.loadUrl(invoice_url);
-                            mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("transaksi/"+PelangganActivity.reference_key_no_kendaraan+"/idPembayaran");
+                            mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("transaksi/"+AdminActivity.reference_key_no_kendaraan+"/idPembayaran");
                             mDatabaseRefPesanSekarang.setValue(invoice_url);
                         }catch (JSONException err){
                             Log.d("Error", err.toString());
@@ -352,13 +291,13 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
     }
 
     public void cekStatusPembayaran(){
-        if("PENDING".equals(PelangganActivity.status_pembayaran)){
-            if("TRANSFER".equals(PelangganActivity.id_pembayaran)){
+        if("PENDING".equals(AdminActivity.status_pembayaran)){
+            if("TRANSFER".equals(AdminActivity.id_pembayaran)){
                 if(ButtonBayar==true){
                     prosesPembayaran();
                 }
             } else {
-                String idInvoice = PelangganActivity.id_pembayaran.substring(PelangganActivity.id_pembayaran.lastIndexOf("/") + 1);
+                String idInvoice = AdminActivity.id_pembayaran.substring(AdminActivity.id_pembayaran.lastIndexOf("/") + 1);
                 RequestQueue queue = Volley.newRequestQueue(getActivity());
                 String url ="http://192.168.22.107/rrjapung/cek-invoice.php?id-invoice="+idInvoice;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -372,9 +311,9 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
                                         webView.getSettings().setLoadsImagesAutomatically(true);
                                         webView.getSettings().setJavaScriptEnabled(true);
                                         webView.getSettings().setDomStorageEnabled(true);
-                                        webView.loadUrl(PelangganActivity.id_pembayaran);
+                                        webView.loadUrl(AdminActivity.id_pembayaran);
                                     }else {
-                                        mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("transaksi/"+PelangganActivity.reference_key_no_kendaraan+"/statusPembayaran");
+                                        mDatabaseRefPesanSekarang = FirebaseDatabase.getInstance().getReference("transaksi/"+AdminActivity.reference_key_no_kendaraan+"/statusPembayaran");
                                         mDatabaseRefPesanSekarang.setValue("SUKSES");
                                         TextViewStatusPembayaran.setText("SUKSES");
                                     }
@@ -394,13 +333,13 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
         }else {
             TextViewStatusPembayaran.setText("SUKSES");
             if(webView != null){
-                String idInvoice = PelangganActivity.id_pembayaran.substring(PelangganActivity.id_pembayaran.lastIndexOf("/") + 1);
+                String idInvoice = AdminActivity.id_pembayaran.substring(AdminActivity.id_pembayaran.lastIndexOf("/") + 1);
                 RequestQueue queue = Volley.newRequestQueue(getActivity());
                 String url ="http://192.168.22.107/rrjapung/cek-invoice.php?id-invoice="+idInvoice;
                 webView.getSettings().setLoadsImagesAutomatically(true);
                 webView.getSettings().setJavaScriptEnabled(true);
                 webView.getSettings().setDomStorageEnabled(true);
-                webView.loadUrl(PelangganActivity.id_pembayaran);
+                webView.loadUrl(AdminActivity.id_pembayaran);
             }
         }
 
@@ -414,7 +353,7 @@ public class DetailPemesananKendaraanFragment extends Fragment implements Daftar
         TextViewPaketNamaSupir.setText(selectedItem.getNamaSopir());
         TextViewPaketNoTeleponSupir.setText(selectedItem.getNoTeleponSopir());
         TextViewPaketHargaSupir.setText("Rp."+decim.format(PaketHargaSupir)+",00");
-        TotalHargaSewa = Integer.valueOf(PelangganActivity.harga_sewa)+150000;
+        TotalHargaSewa = Integer.valueOf(AdminActivity.harga_sewa)+150000;
         TextViewTotalHargaSewa.setText("Rp. "+decim.format(TotalHargaSewa)+",00");
         LineraLayoutListPaketSopir.setVisibility(View.GONE);
         LinearLayoutPaketSopir.setVisibility(View.VISIBLE);

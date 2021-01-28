@@ -52,7 +52,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         holder.textViewTahunProduksi.setText(uploadCurrent.getmTahunProduksi()+" TH");
         Picasso.get()
                 .load(uploadCurrent.getmImageUrl())
-                .placeholder(R.drawable.default_image1)
+                .placeholder(R.drawable.mobildefault)
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);

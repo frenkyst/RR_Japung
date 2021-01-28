@@ -14,6 +14,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,8 @@ import com.example.rr_japung.model.Transaksi;
 import com.example.rr_japung.model.Upload;
 import com.example.rr_japung.ui_admin.AdminActivity;
 import com.example.rr_japung.ui_admin.home.HomeFragment;
+import com.example.rr_japung.ui_pelanggan.PelangganActivity;
+import com.example.rr_japung.ui_pelanggan.keranjang.DetailPemesananKendaraanFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -73,9 +76,14 @@ public class TransaksiFragment extends Fragment implements DaftarTransaksi.OnIte
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mTransaksi.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Transaksi transaksi = postSnapshot.getValue(Transaksi.class);
-                    transaksi.setKey(postSnapshot.getKey());
-                    mTransaksi.add(transaksi);
+                    if(postSnapshot.child("statusPembayaran").exists()){
+                        String query = postSnapshot.child("statusPembayaran").getValue(String.class);
+                        if("SUKSES".equals(query)){
+                            Transaksi transaksi = postSnapshot.getValue(Transaksi.class);
+                            transaksi.setKey(postSnapshot.getKey());
+                            mTransaksi.add(transaksi);
+                        }
+                    }
                     TanggalPesan.add( Long.parseLong(postSnapshot.child("tanggalPesan").getValue(String.class)));
                     TanggalKembali.add( Long.parseLong(postSnapshot.child("tanggalKembali").getValue(String.class)));
 //                    TanggalKembali2.add(dataSnapshot.child("tanggalKembali").getValue(String.class));
@@ -123,6 +131,34 @@ public class TransaksiFragment extends Fragment implements DaftarTransaksi.OnIte
 
     @Override
     public void onItemClick(int position) {
+        Transaksi selectedItem = mTransaksi.get(position);
+        AdminActivity.reference_key_no_kendaraan = selectedItem.getKey();
 
+        AdminActivity.merk_kendaraan = selectedItem.getMerkKendaraan();
+        AdminActivity.tipe_kendaraan = selectedItem.getTipeKendaraan();
+        AdminActivity.no_kendaraan =  selectedItem.getNoKendaraan();
+        AdminActivity.tahun_produksi = selectedItem.getTahunProduksiKendaraan();
+        AdminActivity.ukuran_mesin = selectedItem.getUkuranMesinKendaraan();
+//        AdminActivity.status_kendaraan = selectedItem.getStatusKendaraan();
+        AdminActivity.harga_sewa = selectedItem.getHargaSewaKendaraan();
+        AdminActivity.transmisi = selectedItem.getTransmisiKendaraan();
+        AdminActivity.mesin = selectedItem.getMesinKendaraan();
+        AdminActivity.imageURL = selectedItem.getFotoKendaraanURL();
+        AdminActivity.total_harga_sewa = selectedItem.getTotalHargaSewa();
+        AdminActivity.tanggal_pesan = selectedItem.getTanggalPesan();
+        AdminActivity.tanggal_kembali = selectedItem.getTanggalKembali();
+        AdminActivity.nama_sopir = selectedItem.getNamaSopir();
+        AdminActivity.no_telepon_sopir = selectedItem.getNoTeleponSopir();
+        AdminActivity.harga_paket_sopir = selectedItem.getHargaPaketSopir();
+        AdminActivity.no_KTP_pemesan = selectedItem.getNoKTPPemesan();
+        AdminActivity.nama_pemesan = selectedItem.getNamaPemesan();
+        AdminActivity.no_telepon_pemesan = selectedItem.getNoTeleponPemesan();
+        AdminActivity.alamat_pemesan = selectedItem.getAlamatPemesan();
+        AdminActivity.id_pembayaran = selectedItem.getIdPembayaran();
+        AdminActivity.status_pembayaran = selectedItem.getStatusPembayaran();
+
+        AppCompatActivity activity = (AppCompatActivity) getContext();
+        Fragment myFragment = new DetailPesananKendaraanFragment();
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.admin_ui_fragment_transaksi, myFragment).addToBackStack(null).commit();
     }
 }

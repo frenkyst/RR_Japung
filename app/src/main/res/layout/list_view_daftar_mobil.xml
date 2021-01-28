@@ -104,13 +104,13 @@
 
         <ImageView
             android:id="@+id/image_view_upload"
-            android:textAlignment="center"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="2dp"
-            android:layout_width="0dp"
             android:layout_weight="297"
-            android:layout_height="100dp"
-            tools:srcCompat="@drawable/default_image1" />
+            android:textAlignment="center"
+            tools:srcCompat="@drawable/mobildefault" />
 
     </LinearLayout>
 

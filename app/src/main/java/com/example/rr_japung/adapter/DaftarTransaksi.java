@@ -5,12 +5,14 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rr_japung.R;
 import com.example.rr_japung.model.Transaksi;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,6 +41,12 @@ public class DaftarTransaksi extends RecyclerView.Adapter<DaftarTransaksi.Daftar
         holder.textViewNoKendaraan .setText(dataTransaksiCurrent.getNoKendaraan());
         String date = DateFormat.format("dd-MM-yyyy  hh:mm", Long.parseLong(dataTransaksiCurrent.getTanggalPesan())).toString();
         holder.textViewTanggalWaktuPesan .setText(date);
+        Picasso.get()
+                .load(dataTransaksiCurrent.getFotoKendaraanURL())
+                .placeholder(R.drawable.mobildefault)
+                .fit()
+                .centerCrop()
+                .into(holder.imageView);
     }
 
     @Override
@@ -49,6 +57,7 @@ public class DaftarTransaksi extends RecyclerView.Adapter<DaftarTransaksi.Daftar
     public class DaftarTransaksiViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         public TextView textViewNamaPemesan,textViewTipeKendaraan,textViewMerkKendaraan,textViewNoKendaraan,textViewTanggalWaktuPesan;
+        public ImageView imageView;
 
         public DaftarTransaksiViewHolder(View itemView) {
             super(itemView);
@@ -58,6 +67,7 @@ public class DaftarTransaksi extends RecyclerView.Adapter<DaftarTransaksi.Daftar
             textViewMerkKendaraan = itemView.findViewById(R.id.text_merk_kendaraan);
             textViewNoKendaraan = itemView.findViewById(R.id.text_no_kendaraan);
             textViewTanggalWaktuPesan = itemView.findViewById(R.id.text_waktu_pinjam);
+            imageView = itemView.findViewById(R.id.image_view_upload);
 
 //            daftarSopirView = itemView.findViewById(R.id.image_view_upload);
 

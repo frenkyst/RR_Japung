@@ -51,7 +51,7 @@ public class DaftarMobil extends RecyclerView.Adapter<DaftarMobil.DaftarMobilVie
         holder.textViewTahunProduksi.setText(uploadCurrent.getmTahunProduksi()+" TH");
         Picasso.get()
                 .load(uploadCurrent.getmImageUrl())
-                .placeholder(R.drawable.default_image1)
+                .placeholder(R.drawable.mobildefault)
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
